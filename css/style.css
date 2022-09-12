@@ -25,12 +25,14 @@ body {
 
 .container-header .section-header ul {
     display: flex;
+    gap: 10px;
     padding: 0;
 }
 
-.container-header .section-header ul li {
+.container-header .section-header .header-nav {
     padding: 10px;
     font-size: 14px;
+
 }
 
 .container-main {
