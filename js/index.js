@@ -1,6 +1,62 @@
-const botoesAdd = [];
+function renderizaHeaderNav() {
 
-function rederizaCards(array) {
+    let listaCategoria = ["Todos", "Acessórios", "Calçados", "Camisetas"];
+
+    const header = document.querySelector(".section-header");
+    const nav = document.createElement("nav");
+    const ul = document.createElement("ul");
+
+    for (i = 0; i < listaCategoria.length; i++) {
+
+        const li = document.createElement("li");
+        const buttonCategoria = document.createElement("button");
+        buttonCategoria.innerText = listaCategoria[i];
+        buttonCategoria.addEventListener("click", clickCategoria);
+
+        li.appendChild(buttonCategoria);
+        ul.appendChild(li);
+
+    }
+
+    nav.appendChild(ul);
+    header.append(nav);
+}
+renderizaHeaderNav();
+
+
+
+
+// Falha na verificação;
+function clickCategoria(event) {
+
+    let sectionMain = document.querySelector(".cards");
+    let listaCategoriaTratada = [];
+
+    for (let i = 0; i < data.length; i++) {
+
+        if (event.target.innerText === "Todos") {
+            listaCategoriaTratada.push(data[i]);
+        } else if (data[i].tag.includes(event.target.innerText)) {
+            listaCategoriaTratada.push(data[i]);
+        }
+        // else if (!data[i].tag.includes(event.target.innerText)) {
+        //         sectionMain.innerHTML = `<p>Sem produtos</p>`; 
+        // }
+    }
+    // if(listaCategoriaTratada.length === 0){
+    //     return sectionMain.innerHTML = `<p>Sem produtos</p>`; 
+    // }
+
+    renderizaCards(listaCategoriaTratada);
+}
+
+
+
+
+let botoesAdd = [];
+let carrinho = [];
+
+function renderizaCards(array) {
 
     const ulProdutos = document.getElementById("ul-produtos");
     ulProdutos.innerHTML = "";
@@ -20,82 +76,127 @@ function rederizaCards(array) {
         img.src = array[i].img;
         img.alt = array[i].nameItem;
 
-
         pCategoria.innerText = array[i].tag;
         pCategoria.id = "p-categoria"
         h2.innerText = array[i].nameItem;
         pText.innerText = array[i].description;
         h3.innerText = array[i].value.toLocaleString("pt-br", { style: "currency", currency: "BRL", });;
         buttonAdd.innerText = array[i].addCart;
-        botoesAdd.push(buttonAdd)
+        buttonAdd.id = array[i].id;
 
         figure.appendChild(img);
         nav.append(pCategoria, h2, pText, h3, buttonAdd);
         liCards.append(figure, nav);
         ulProdutos.appendChild(liCards);
-
     }
 }
-rederizaCards(data);
+renderizaCards(data);
 
 
 
-function renderizaCampoBusca() {
 
-    const campoBusca = document.querySelector(".busca");
-    const inputBusca = document.createElement("input");
-    inputBusca.type = "text";
-    inputBusca.placeholder = "Digite aqui sua pesquisa";
+function renderizaCampoPesquisa() {
 
-    const buttonBusca = document.createElement("button");
-    buttonBusca.innerText = "Pesquisar";
-    buttonBusca.addEventListener("click", pesquisarProduto);
+    const campoPesquisa = document.querySelector(".busca");
+    const inputPesquisa = document.createElement("input");
+    inputPesquisa.type = "text";
+    inputPesquisa.placeholder = "Digite aqui sua pesquisa";
+
+    const buttonPesquisa = document.createElement("button");
+    buttonPesquisa.innerText = "Pesquisar";
+    buttonPesquisa.addEventListener("click", pesquisarProduto);
 
 
-    campoBusca.append(inputBusca, buttonBusca);
+    campoPesquisa.append(inputPesquisa, buttonPesquisa);
 
 }
-renderizaCampoBusca();
+renderizaCampoPesquisa();
 
 
 
+// Falha na verificação;
 function pesquisarProduto() {
 
-    let inputBusca = document.querySelector("input");
+    let sectionCards = document.querySelector(".cards");
+    let inputPesquisa = document.querySelector("input");
     let saida = [];
-    let proutoNaoEncontrado = "Produto não encontrado";
 
     for (let i = 0; i < data.length; i++) {
-        let verifyIfContainsObject = data[i].nameItem.toLowerCase().includes(inputBusca.value.toLowerCase())
+
+        let verifyIfContainsObject = data[i].nameItem.toLowerCase().includes(inputPesquisa.value.toLowerCase());
 
         if (verifyIfContainsObject) {
             saida.push(data[i]);
-        } else {
-          inputBusca.value = proutoNaoEncontrado;
-        }
+        } 
+        // else if (inputPesquisa !== verifyIfContainsObject) {
+        //     sectionCards.innerHTML = `<p>Produto não encontrado</p>`;
+        // }
     }
 
-    rederizaCards(saida);
+    renderizaCards(saida);
 }
+
 
 
 
 function renderizaCarrinho() {
 
-    const sectionCarrinho = document.querySelector(".carrinho");
-    const header = document.createElement("header");
-    const h3 = document.createElement("h3");
-    const main = document.createElement("main");
+    const main = document.querySelector(".main-carrinho");
     const h2 = document.createElement("h2");
     const p = document.createElement("p");
+    const ul = document.createElement("ul");
 
-    h3.innerText = "Carrinho de compras";
-    header.appendChild(h3);
+    for (let i = 0; i < carrinho.length; i++) {
+        let produtoCarrinho = [];
+        const li = document.createElement("li");
+       
+    }
+
 
     h2.innerText = "Carrinho de compras";
     p.innerText = "Adicione itens";
     main.append(h2, p);
-
-    sectionCarrinho.append(header, main);
 }
 renderizaCarrinho();
+
+
+
+
+function addCarrinho() {
+    let ul = document.querySelector("#ul-produtos");
+    console.log(ul)
+    ul.addEventListener("click", function (event) {
+        if (event.target.tagName === "BUTTON") {
+            // console.log(event.target.id);
+            for (let i = 0; i < data.length; i++) {
+                if (event.target.id == data[i].id) {
+                    carrinho.push(data[i]);
+                    console.log(carrinho)
+                }
+            }
+        }
+
+    })
+}
+addCarrinho()
+
+
+
+
+function somaCarrinho() {
+
+    let soma = 0;
+
+    for (i = 0; i < carrinho.length; i++) {
+
+        let num = parseInt(carrinho);
+        console.log(num)
+        if (num === Number) {
+
+            soma += num;
+        }
+    }
+    console.log(soma)
+    return soma;
+}
+somaCarrinho()
