@@ -38,19 +38,40 @@ function rederizaCards(array) {
 }
 rederizaCards(data);
 
-// console.log(botoesAdd);
+
+
+function renderizaCampoBusca() {
+
+    const campoBusca = document.querySelector(".busca");
+    const inputBusca = document.createElement("input");
+    inputBusca.type = "text";
+    inputBusca.placeholder = "Digite aqui sua pesquisa";
+
+    const buttonBusca = document.createElement("button");
+    buttonBusca.innerText = "Pesquisar";
+    buttonBusca.addEventListener("click", pesquisarProduto);
+
+
+    campoBusca.append(inputBusca, buttonBusca);
+
+}
+renderizaCampoBusca();
 
 
 
-function buscarProduto() {
+function pesquisarProduto() {
 
     let inputBusca = document.querySelector("input");
     let saida = [];
+    let proutoNaoEncontrado = "Produto não encontrado";
 
     for (let i = 0; i < data.length; i++) {
+        let verifyIfContainsObject = data[i].nameItem.toLowerCase().includes(inputBusca.value.toLowerCase())
 
-        if (inputBusca.value === data[i].nameItem) {
+        if (verifyIfContainsObject) {
             saida.push(data[i]);
+        } else {
+          inputBusca.value = proutoNaoEncontrado;
         }
     }
 
@@ -59,19 +80,22 @@ function buscarProduto() {
 
 
 
-function renderizaCampoBusca() {
-    
-    const campoBusca = document.querySelector(".busca");
-    const inputBusca = document.createElement("input");
-    inputBusca.type = "text";
-    inputBusca.placeholder = "Digite aqui sua pesquisa";
+function renderizaCarrinho() {
 
-    const buttonBusca = document.createElement("button");
-    buttonBusca.innerText = "Pesquisar";
-    buttonBusca.addEventListener("click", buscarProduto);
+    const sectionCarrinho = document.querySelector(".carrinho");
+    const header = document.createElement("header");
+    const h3 = document.createElement("h3");
+    const main = document.createElement("main");
+    const h2 = document.createElement("h2");
+    const p = document.createElement("p");
 
-    campoBusca.append(inputBusca, buttonBusca);
+    h3.innerText = "Carrinho de compras";
+    header.appendChild(h3);
 
+    h2.innerText = "Carrinho de compras";
+    p.innerText = "Adicione itens";
+    main.append(h2, p);
+
+    sectionCarrinho.append(header, main);
 }
-renderizaCampoBusca();
-
+renderizaCarrinho();

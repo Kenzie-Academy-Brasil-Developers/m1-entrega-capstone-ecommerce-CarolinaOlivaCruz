@@ -1,45 +1,49 @@
+
+
+
+
 function renderizaHeaderNav() {
 
     let listaCategoria = ["Todos", "Acessórios", "Calçados", "Camisetas"];
 
     const header = document.querySelector(".section-header");
-    const h1 = document.createElement("h1");
     const nav = document.createElement("nav");
     const ul = document.createElement("ul");
 
     for (i = 0; i < listaCategoria.length; i++) {
 
         const li = document.createElement("li");
-        li.id = "header-nav"
-        li.innerText = listaCategoria[i];
-        ul.appendChild(li);
+        const buttonCategoria = document.createElement("button");
+        buttonCategoria.innerText = listaCategoria[i];
+
+        // buttonCategoria.outerText;
+   
+        li.appendChild(buttonCategoria);
+        ul.appendChild(li);   
+    
     }
 
-    h1.innerText = "Weartake";
 
     nav.appendChild(ul);
-    header.append(h1, nav);
-
+    header.append(nav);
 }
 renderizaHeaderNav();
 
 
-
-function separaCategoria(categoria) {
+function separaCategoria() {
 
     let listaCategoria = [];
+    // const listaNav = this.button;
+    // listaNav.outerText;
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i].tag[0] === categoria) {
+        if (data[i].tag[0] === listaNav) {
             listaCategoria.push(data[i]);
         }
     }
-
     return listaCategoria;
 }
 
-console.log(separaCategoria("Camisetas"));
-console.log(separaCategoria("Acessórios"));
-console.log(separaCategoria("Calçados"));
-
-header-nav.addEventListener("click", separaCategoria);
+    
+    
+separaCategoria();
