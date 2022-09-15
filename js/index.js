@@ -156,7 +156,7 @@ function addCarrinho() {
         } 
 
         let buttonsRemover = document.querySelectorAll(".main-carrinho li button");
-        console.log(buttonsRemover);
+        
         for (let i = 0; i < buttonsRemover.length; i++) {
             buttonsRemover[i].addEventListener("click", remover);
         }
@@ -169,7 +169,7 @@ addCarrinho()
 
 
 function remover(event) {
-  console.log(event.target.parentElement.parentElement.remove());
+  event.target.parentElement.parentElement.remove();
 }
 
 
