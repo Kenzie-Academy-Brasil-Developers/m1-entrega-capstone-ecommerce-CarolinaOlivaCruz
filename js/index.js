@@ -38,14 +38,8 @@ function clickCategoria(event) {
         } else if (data[i].tag.includes(event.target.innerText)) {
             listaCategoriaTratada.push(data[i]);
         }
-        // else if (!data[i].tag.includes(event.target.innerText)) {
-        //         sectionMain.innerHTML = `<p>Sem produtos</p>`; 
-        // }
     }
-    // if(listaCategoriaTratada.length === 0){
-    //     return sectionMain.innerHTML = `<p>Sem produtos</p>`; 
-    // }
-
+   
     renderizaCards(listaCategoriaTratada);
 }
 
@@ -127,9 +121,6 @@ function pesquisarProduto() {
         if (verifyIfContainsObject) {
             saida.push(data[i]);
         }
-        // else if (inputPesquisa !== verifyIfContainsObject) {
-        //     sectionCards.innerHTML = `<p>Produto não encontrado</p>`;
-        // }
     }
 
     renderizaCards(saida);
@@ -161,6 +152,14 @@ function addCarrinho() {
             buttonsRemover[i].addEventListener("click", remover);
         }
 
+        let listaPrecos = document.querySelectorAll(".main-carrinho li");
+        console.log(listaPrecos);
+
+        for(i = 0; i < listaPrecos.length; i++){
+            let precoItem = parseInt(listaPrecos[i].value);
+            soma(precoItem);
+        }
+        
     })
 }
 addCarrinho()
@@ -204,4 +203,15 @@ function carrinhoCheio() {
         ul.appendChild(li);
         main.append(ul);
     }
+}
+
+
+function soma(preco){
+
+    let contador = 0;
+
+    for(let i = 0; 0 < preco.length; i++){
+        contador += preco[i];
+    }
+    console.log(contador)
 }
