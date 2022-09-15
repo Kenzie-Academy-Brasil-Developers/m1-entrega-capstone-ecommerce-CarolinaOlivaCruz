@@ -134,7 +134,7 @@ function addCarrinho() {
 
     ul.addEventListener("click", function (event) {
         if (event.target.tagName === "BUTTON") {
-            // console.log(event.target.id);
+            
             for (let i = 0; i < data.length; i++) {
                 if (event.target.id == data[i].id) {
                     carrinho.push(data[i]);
@@ -152,13 +152,13 @@ function addCarrinho() {
             buttonsRemover[i].addEventListener("click", remover);
         }
 
-        let listaPrecos = document.querySelectorAll(".main-carrinho li");
-        console.log(listaPrecos);
+        // let listaPrecos = document.querySelectorAll(".main-carrinho li");
+        // console.log(listaPrecos);
 
-        for(i = 0; i < listaPrecos.length; i++){
-            let precoItem = parseInt(listaPrecos[i].value);
-            soma(precoItem);
-        }
+        // for(i = 0; i < listaPrecos.length; i++){
+        //     let precoItem = parseInt(listaPrecos[i].value);
+        //     soma(precoItem);
+        // }
         
     })
 }
@@ -206,12 +206,12 @@ function carrinhoCheio() {
 }
 
 
-function soma(preco){
+// function soma(preco){
 
-    let contador = 0;
+//     let contador = 0;
 
-    for(let i = 0; 0 < preco.length; i++){
-        contador += preco[i];
-    }
-    console.log(contador)
-}
+//     for(let i = 0; 0 < preco.length; i++){
+//         contador += preco[i];
+//     }
+//     console.log(contador)
+// }
