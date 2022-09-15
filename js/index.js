@@ -150,15 +150,17 @@ function addCarrinho() {
                 }
             }
         }
+
+        if (carrinho.length !== 0) {
+            carrinhoCheio();
+        } 
+
         let buttonsRemover = document.querySelectorAll(".main-carrinho li button");
         console.log(buttonsRemover);
         for (let i = 0; i < buttonsRemover.length; i++) {
             buttonsRemover[i].addEventListener("click", remover);
         }
 
-        if (carrinho.length !== 0) {
-            carrinhoCheio();
-        } 
     })
 }
 addCarrinho()
@@ -167,7 +169,7 @@ addCarrinho()
 
 
 function remover(event) {
-   event.target.parentElement.parentElement.remove();
+  console.log(event.target.parentElement.parentElement.remove());
 }
 
 
@@ -203,27 +205,3 @@ function carrinhoCheio() {
         main.append(ul);
     }
 }
-
-
-
-
-
-
-
-// function somaCarrinho() {
-
-//     let soma = 0;
-
-//     for (i = 0; i < carrinho.length; i++) {
-
-//         let num = parseInt(carrinho);
-//         console.log(num)
-//         if (num === Number) {
-
-//             soma += num;
-//         }
-//     }
-//     console.log(soma)
-//     return soma;
-// }
-// somaCarrinho()
